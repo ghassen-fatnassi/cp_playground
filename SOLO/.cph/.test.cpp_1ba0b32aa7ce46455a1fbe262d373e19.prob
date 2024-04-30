@@ -1,1 +1,0 @@
-{"name":"Local: test","url":"/media/gaston/gaston/DEV/CP/SOLO/test.cpp","tests":[{"id":1706085373092,"input":"5\n1 1 1 1 2\n5\n1 4\n0 3\n0 4\n0 0\n4 4","output":"5\n4\n6\n1\n2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/media/gaston/gaston/DEV/CP/SOLO/test.cpp","group":"local","local":true}
