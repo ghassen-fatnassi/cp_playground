@@ -1,4 +1,4 @@
-# Competitive Programming Playground
+# Competitive Programming Playground 🏆🚀💻
 
 Welcome to the Competitive Programming Playground! Here, you'll find code snippets, algorithms, and solutions representing my journey in competitive programming. 🚀
 
