@@ -21,6 +21,6 @@ The repository may seem messy, but it's continually improving. 🌱
 
 ## Contact:
 
-Email [ghassen.fatnassi@supcom.tn] with questions or suggestions. 📧
+Email ghassen.fatnassi@supcom.tn with questions or suggestions. 📧
 
 Happy coding! 💻🏆
