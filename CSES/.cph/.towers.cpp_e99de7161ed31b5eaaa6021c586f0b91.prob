@@ -1,0 +1,1 @@
+{"name":"Local: towers","url":"/media/gaston/gaston/DEV/CP/CSES/towers.cpp","tests":[{"id":1711491118706,"input":"5\n3 8 2 1 5","output":"2"},{"id":1711491243696,"input":"7\n1 2 5 4 2 8 15","output":"5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/media/gaston/gaston/DEV/CP/CSES/towers.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: counting_rooms","url":"/media/gaston/gaston/DEV/CP/CSES/counting_rooms.cpp","tests":[{"id":1706912946060,"input":"5 8\n########\n#..#...#\n####.#.#\n#..#...#\n########","output":"3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/media/gaston/gaston/DEV/CP/CSES/counting_rooms.cpp","group":"local","local":true}

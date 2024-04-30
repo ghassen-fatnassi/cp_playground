@@ -1,0 +1,1 @@
+{"name":"Local: NEW","url":"/media/gaston/gaston/DEV/CP/contest/NEW.cpp","tests":[{"id":1708877776471,"input":"3\n2\n0 1\n3\n0 1 2\n3\n0 2 1\n6","output":"3\n4\n2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/media/gaston/gaston/DEV/CP/contest/NEW.cpp","group":"local","local":true}
