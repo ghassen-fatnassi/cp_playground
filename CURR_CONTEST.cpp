@@ -7,10 +7,21 @@ using namespace std;
 #define TC while (t--)
 const int MOD = 1e9 + 7;
 
-int divisors_count(ll x)
+long long puiss(long long a, long long b)
 {
+    long long res = 1;
+    while (b > 0)
+    {
+        if (b & 1)
+        {
+            res *= a;
+            res = res;
+        }
+        a = a * a;
+        b = b / 2;
+    }
+    return res;
 }
-
 int main()
 {
     FASTIO
@@ -18,19 +29,21 @@ int main()
     cin >> t;
     TC
     {
-        ll l, r;
-        cin >> l >> r;
-        if (r - l != 0)
+        ll x, y;
+        cin >> x >> y;
+        ll ix;
+        ll iy;
+        ll curr = 0;
+        ll i = 0;
+        while (curr == 0)
         {
-            ll cc;
-            if (r % 2 == 0)
-            {
-                cc = r;
-            }
-            else
-            {
-                cc = r - 1;
-            }
+            ix = x % 2;
+            iy = y % 2;
+            curr = abs(ix - iy);
+            i++;
+            x = x / 2;
+            y = y / 2;
         }
+        cout << puiss(2, i - 1) << "\n";
     }
 }
