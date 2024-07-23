@@ -1,49 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-#define FASTIO  \
-    cin.tie(0); \
-    ios_base::sync_with_stdio(false);
+#define FASTIO                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(0);
 #define TC while (t--)
-// #define MAXN 1e9
-// vector<int> spf(MAXN + 1, 1);
 const ll MOD = 998244353;
 
 void solve()
 {
-    ll h, n;
-    cin >> h >> n;
-    ll a[n];
-    ll c[n];
-    for (int i = 0; i < n; i++)
+    int n, k;
+    cin >> n >> k;
+    int occ = 0;
+    int a[2 * n - 1];
+    for (int i = 0; i < 2 * n - 1; i += 2)
     {
-        cin >> a[i];
+        a[i] = (i + 1) / 2;
+        a[i + 1] = (i + 1) / 2;
     }
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < 2 * n - 1; i++)
     {
-        cin >> c[i];
-    }
-    ll l = 1;
-    ll r = 4e10;
-    ll mid = (l + r) / 2;
-    while (l < r)
-    {
-        mid = (l + r) / 2;
-        ll damage = 0;
-        for (int i = 0; i < n; i++)
+        if (k <= 0)
         {
-            damage += a[i] * (mid / c[i] + (mid % c[i] != 0));
-        }
-        if (damage >= h)
-        {
-            r = mid; // Corrected line
+            break;
         }
         else
         {
-            l = mid + 1;
+            k = k - (n - i);
+            occ++;
         }
     }
-    cout << r << "\n";
+    cout << occ << "\n";
 }
 
 int main()

@@ -11,7 +11,7 @@ const int MOD = 1e9 + 7;
 class Post
 {
 public:
-    virtual void disgplay() = 0;
+    virtual void display() = 0;
 };
 
 class TextPost : public Post
@@ -135,7 +135,7 @@ class PremiumUser : public User
 {
 public:
     // constructor
-    PremiumUser(string name, string password) : User(name,password)
+    PremiumUser(string name, string password) : User(name, password)
     {
     }
     // destructor
@@ -179,7 +179,6 @@ int main()
 
     user1.sharePost(&textpost1);
     user2.sharePost(&imagepost);
-
 
     premiumUser.viewProfileVisitors();
     user1.disconnect();

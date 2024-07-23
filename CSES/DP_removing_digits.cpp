@@ -1,39 +1,48 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-#define FASTIO  \
-    cin.tie(0); \
-    ios_base::sync_with_stdio(false);
+#define FASTIO                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(0);
 #define TC while (t--)
-const int MOD = 1e9 + 7;
+const ll MOD = 998244353;
+
+vector<ll> find_digits(ll x)
+{
+    vector<ll> digits;
+    while (x != 0)
+    {
+        digits.push_back(x % 10);
+        x = x / 10;
+    }
+    return digits;
+}
+
+void solve()
+{
+    ll n;
+    cin >> n;
+    vector<ll> dp(n + 1, 1e9);
+    dp[0] = 0;
+    for (int i = 1; i < n + 1; i++)
+    {
+        vector<ll> digits = find_digits(i);
+        for (auto &elm : digits)
+        {
+            dp[i] = min(dp[i], dp[i - elm] + 1);
+        }
+    }
+    cout << dp[n] << "\n";
+}
 
 int main()
 {
     FASTIO
-    ll n;
-    cin >> n;
-    ll dp[n + 1];
-    fill_n(dp, n + 1, 0);
-    for (ll i = 1; i <= n; ++i)
+    ll t;
+    t = 1;
+    TC
     {
-        ll mino = 1e10;
-        string digits;
-        digits = to_string(i);
-        cout << digits << " ";
-        for (char digit : digits)
-        {
-            ll num;
-            string sta = "";
-            sta += digit;
-            num = stoll((sta));
-
-            if (i - num >= 0)
-            {
-                cout << dp[i - num] << " ";
-                mino = min(mino, dp[i - num]);
-            }
-        }
-        dp[i] = mino + 1; // Corrected line
-        cout << dp[i] << " \n";
+        solve();
     }
+    return 0;
 }
