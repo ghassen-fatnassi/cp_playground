@@ -1,59 +1,64 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-#define FASTIO                        \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(0);
+#define FASTIO  \
+    cin.tie(0); \
+    ios_base::sync_with_stdio(false);
 #define TC while (t--)
-const ll MOD = 998244353;
+const int MOD = 1e9 + 7;
 
 void solve()
 {
-    ll n;
-    cin>>n;
-    multiset<ll> a;
-    bool odd=false;
-    bool even=false;
-    for(int i=0;i<n;i++){
-        ll x;
-        cin>>x;
-        if(x%2==0){even=true;}else{odd=true;}
-        if(even && odd){cout<<-1;return;}
-        a.insert(x);
-    }
-
-    ll count=0;
-    vector<ll> ops;
-    while(count<=40){
-        ll big=*a.rbegin();
-        ll small=*a.begin();
-        ll mid=(big+small)/2;
-        if(mid==0){break;}
-        else{
-            multiset<ll> new_a;
-            for(auto elm:a){
-                new_a.insert(abs(elm-mid));
-            }
-            a = new_a;
-            count++;
-            ops.push_back(mid);
+    ll n, m, s;
+    cin >> n >> m >> s;
+    ll out = 0;
+    ll one = 1;
+    if (s < m && s < n)
+    {
+        ll coeff = 0;
+        if (m % s == 0 && n % s == 0)
+        {
+            coeff = s * s;
         }
+        else if (m % s == 0)
+        {
+            coeff = s * (n % s);
+        }
+        else if (n % s == 0)
+        {
+            coeff = s * (m % s);
+        }
+        else
+        {
+            coeff = (n % s) * (m % s);
+        }
+        ll val = (((((n - s) + (s - 1)) / s) + 1) * ((((m - s) + (s - 1)) / s) + 1));
+        out = val * coeff;
     }
-    cout<<count<<"\n";
-    for(auto elm:ops){
-        cout<<elm<<" ";
+    else if (s < m)
+    {
+        out = (n % s) * (((m - s) + (s - 1)) / s + 1);
     }
+    else if (s < n)
+    {
+        out = (m % s) * (((n - s) + (s - 1)) / s + 1);
+    }
+    else
+    {
+        out = n * m;
+    }
+    cout << out << "\n";
 }
 
 int main()
 {
     FASTIO
     ll t;
-    cin >> t;
+    // cin >> t;
+    t = 1;
     TC
     {
         solve();
-        cout<<"\n";
     }
     return 0;
 }
