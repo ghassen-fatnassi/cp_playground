@@ -1,155 +1,209 @@
-// ###############################################################################################
-// class Shape {
-// public:
-//     virtual void draw() = 0; // Pure virtual function
-//     virtual double area() = 0; // Another pure virtual function
-// };
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <memory> // For smart pointers
 
-// class Circle : public Shape {
-// private:
-//     double radius;
-// public:
-//     Circle(double r) : {
-// 			radius = r;
-// 		}
+// OOP Concepts:
+// 1. Class: A blueprint for objects.
+// 2. Object: An instance of a class.
+// 3. Encapsulation: Data is hidden inside classes and exposed through methods.
+// 4. Inheritance: Allows classes to inherit properties and behavior from another class.
+// 5. Polymorphism: Allows methods to be used differently in inherited classes (achieved using method overriding).
+// 6. Abstraction: Hides implementation details and provides a user with a clean interface.
+// 7. Composition: A "has-a" relationship where one class contains objects of another class.
 
-//     void draw() {
-//         cout << "Drawing a circle." << endl;
-//     }
+// Abstract Base Class for Accounts (Abstraction)
+class Account
+{
+protected:
+    std::string owner; // Account owner
+    double balance;    // Account balance
 
-//     double area() {
-//         return 3.14 * radius * radius;
-//     }
-// };
+public:
+    Account(std::string owner, double balance = 0.0) : owner(owner), balance(balance) {}
 
-// class Rectangle : public Shape {
-// private:
-//     double width;
-//     double height;
-// public:
-//     Rectangle(double w, double h) {
-// 			width = w;
-// 			height = h;
-// 		}
+    // Abstract Methods (Pure Virtual Functions) for deposit and withdraw
+    virtual void deposit(double amount) = 0;
+    virtual void withdraw(double amount) = 0;
 
-//     void draw() const override {
-//         cout << "Drawing a rectangle." << endl;
-//     }
+    // Getter for balance (Encapsulation: exposing private/protected data via public methods)
+    double getBalance() const
+    {
+        return balance;
+    }
 
-//     double area() const override {
-//         return width * height;
-//     }
-// };
+    virtual ~Account() = default; // Virtual destructor for proper cleanup of derived classes
+};
 
-// int main() {
-//     Circle circle(5.0);
-//     Rectangle rectangle(4.0, 6.0);
+// Derived class from Account: CurrentAccount (Inheritance)
+class CurrentAccount : public Account
+{
+private:
+    double overdraftLimit;
 
-//     Shape* shape1 = &circle;
-//     Shape* shape2 = &rectangle;
+public:
+    CurrentAccount(std::string owner, double balance = 0.0, double overdraftLimit = 1000.0)
+        : Account(owner, balance), overdraftLimit(overdraftLimit) {}
 
-//     shape1->draw(); // Calls Circle::draw()
-//     cout << "Area of circle: " << shape1->area() << endl;
+    // Overriding deposit method (Polymorphism)
+    void deposit(double amount) override
+    {
+        if (amount > 0)
+        {
+            balance += amount;
+            std::cout << "Deposited " << amount << " to Current Account. New balance: " << balance << "\n";
+        }
+        else
+        {
+            std::cout << "Deposit amount must be positive.\n";
+        }
+    }
 
-//     shape2->draw(); // Calls Rectangle::draw()
-//     cout << "Area of rectangle: " << shape2->area() << endl;
+    // Overriding withdraw method (Polymorphism)
+    void withdraw(double amount) override
+    {
+        if (balance + overdraftLimit >= amount)
+        {
+            balance -= amount;
+            std::cout << "Withdrew " << amount << " from Current Account. New balance: " << balance << "\n";
+        }
+        else
+        {
+            std::cout << "Insufficient funds (including overdraft limit).\n";
+        }
+    }
+};
 
-//     return 0;
-// }
-// ###############################################################################################
+// Derived class from Account: SavingsAccount (Inheritance)
+class SavingsAccount : public Account
+{
+private:
+    double interestRate;
 
-//     // This is automatically called
-//     // when '+' is used with between
-//     // two Complex objects
-//     Complex operator+(Complex const& obj)
-//     {
-//         Complex res;
-//         res.real = real + obj.real;
-//         res.imag = imag + obj.imag;
-//         return res;
-//     }
+public:
+    SavingsAccount(std::string owner, double balance = 0.0, double interestRate = 0.05)
+        : Account(owner, balance), interestRate(interestRate) {}
 
-// ###########################################################################################
-// class Base {
-// public:
-//     virtual void foo() {
-//         cout << "Base::foo()" << endl;
-//     }
+    // Overriding deposit method (Polymorphism)
+    void deposit(double amount) override
+    {
+        if (amount > 0)
+        {
+            balance += amount;
+            std::cout << "Deposited " << amount << " to Savings Account. New balance: " << balance << "\n";
+        }
+        else
+        {
+            std::cout << "Deposit amount must be positive.\n";
+        }
+    }
 
-// 		void display() {
-// 			cout << "Base::foo()" << endl;
-// 		}
-// };
+    // Overriding withdraw method (Polymorphism)
+    void withdraw(double amount) override
+    {
+        if (balance >= amount)
+        {
+            balance -= amount;
+            std::cout << "Withdrew " << amount << " from Savings Account. New balance: " << balance << "\n";
+        }
+        else
+        {
+            std::cout << "Insufficient funds.\n";
+        }
+    }
 
-// class Derived : public Base {
-// public:
-//     void foo() {
-//         cout << "Derived::foo()" << endl;
-//     }
-// 		void display() {
-// 			cout << "Derived::foo()" << endl;
-// 		}
-// };
+    // Additional method specific to SavingsAccount
+    void applyInterest()
+    {
+        balance += balance * interestRate;
+        std::cout << "Applied interest. New balance: " << balance << "\n";
+    }
+};
 
-// int main() {
-// 	Derived d;
-// 	Base *ptr = &d;
-// 	ptr->foo(); // Expected output: Derived::foo()
-// 	ptr->display(); // Expected output: Base::foo()
-// 	return 0;
-// }
-// ##########################################################################################
-// class Vehicle {
-// private:
-//     int fuel;
-//     int seatingCapacity;
-//     bool brakesApplied;
+// Bank class that holds accounts (Composition)
+class Bank
+{
+private:
+    // Composition: A bank has multiple accounts
+    std::unordered_map<std::string, std::shared_ptr<Account>> accounts;
 
-// public:
-//     // Constructor
-//     Vehicle(int fuelAmount, int capacity) : fuel(fuelAmount), seatingCapacity(capacity), brakesApplied(false) {}
+public:
+    // Factory method to create accounts
+    void createAccount(const std::string &accountType, const std::string &owner, double balance = 0.0)
+    {
+        if (accountType == "current")
+        {
+            accounts[owner] = std::make_shared<CurrentAccount>(owner, balance);
+            std::cout << "Created a Current Account for " << owner << "\n";
+        }
+        else if (accountType == "savings")
+        {
+            accounts[owner] = std::make_shared<SavingsAccount>(owner, balance);
+            std::cout << "Created a Savings Account for " << owner << "\n";
+        }
+    }
 
-// class Bus : public Vehicle {
-// public:
-//     // Constructor
-//     Bus(int fuelAmount, int capacity) : Vehicle(fuelAmount, capacity) {
-//     }
-// };
+    // Get account by owner name
+    std::shared_ptr<Account> getAccount(const std::string &owner)
+    {
+        return accounts[owner];
+    }
 
-// class Car : public Vehicle {
-// public:
-//     // Constructor
-//     Car(int fuelAmount, int capacity) : Vehicle(fuelAmount, capacity) {
-//     }
-// };
+    // Transfer money between accounts
+    void transfer(const std::string &fromOwner, const std::string &toOwner, double amount)
+    {
+        auto fromAccount = accounts[fromOwner];
+        auto toAccount = accounts[toOwner];
 
-// class Truck : public Vehicle {
-// public:
-//     // Constructor
-//     Truck(int fuelAmount, int capacity) : Vehicle(fuelAmount, capacity) {
-//     }
-// };
+        if (fromAccount && toAccount)
+        {
+            if (fromAccount->getBalance() >= amount)
+            {
+                fromAccount->withdraw(amount);
+                toAccount->deposit(amount);
+                std::cout << "Transferred " << amount << " from " << fromOwner << " to " << toOwner << "\n";
+            }
+            else
+            {
+                std::cout << fromOwner << " does not have enough balance.\n";
+            }
+        }
+        else
+        {
+            std::cout << "One or both accounts do not exist.\n";
+        }
+    }
+};
 
-// #############################################################################
-//  class MyClass {
-//  private:
-//      int secretValue;
+// Example usage
+int main()
+{
+    Bank bank;
 
-// public:
-//     MyClass(int value) : secretValue(value) {}
+    // Create accounts
+    bank.createAccount("current", "Alice", 500.0);
+    bank.createAccount("savings", "Bob", 1000.0);
 
-//     // Declaring the friend function
-//     friend void showSecretValue(const MyClass& obj);
-// };
+    // Perform operations
+    auto aliceAccount = bank.getAccount("Alice");
+    auto bobAccount = bank.getAccount("Bob");
 
-// // Definition of the friend function
-// void showSecretValue(const MyClass& obj) {
-//     std::cout << "The secret value is: " << obj.secretValue << std::endl;
-// }
-// ###############################################################################
-// class MyClass {
-// public:
-//     static int count; // Declaration of a static member variable
-// };
+    // Deposit and withdraw
+    aliceAccount->deposit(200.0);
+    aliceAccount->withdraw(300.0);
 
-// int MyClass::count = 0; // Definition of the static member variable
+    bobAccount->deposit(500.0);
+    bobAccount->withdraw(1200.0); // Insufficient funds
+    bobAccount->withdraw(200.0);
+
+    // Apply interest to Bob's savings account
+    if (auto savingsAcc = std::dynamic_pointer_cast<SavingsAccount>(bobAccount))
+    {
+        savingsAcc->applyInterest();
+    }
+
+    // Transfer money between accounts
+    bank.transfer("Alice", "Bob", 200.0);
+
+    return 0;
+}

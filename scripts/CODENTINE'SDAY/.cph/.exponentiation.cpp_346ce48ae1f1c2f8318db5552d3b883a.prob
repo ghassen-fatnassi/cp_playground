@@ -1,1 +1,0 @@
-{"name":"Local: exponentiation","url":"/media/gaston/gaston/DEV/CP/CODENTINE'SDAY/exponentiation.cpp","tests":[{"id":1707564172645,"input":"3\n3 4\n2 8\n123 123","output":"81\n256\n921450052"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/media/gaston/gaston/DEV/CP/CODENTINE'SDAY/exponentiation.cpp","group":"local","local":true}

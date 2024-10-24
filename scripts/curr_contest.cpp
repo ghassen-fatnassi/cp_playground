@@ -1,56 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-#define ll long long
-#define FASTIO  \
-    cin.tie(0); \
-    ios_base::sync_with_stdio(false);
 #define TC while (t--)
+#define ll long long
+#define FASTIO                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(0);
 const int MOD = 1e9 + 7;
+
+ll mod_exp(ll base, ll exp, ll mod)
+{
+    ll result = 1;
+    while (exp > 0)
+    {
+        if (exp % 2 == 1)
+        {
+            result = (result * base) % mod;
+        }
+        base = (base * base) % mod;
+        exp /= 2;
+    }
+    return result;
+}
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    string s = "eaoui";
-    string sb = "iuoae";
-    string out = "";
-    for (int i = 0; i < (n / 5); i++)
+    int t;
+    cin >> t;
+    vector<ll> n(t);
+    vector<ll> k(t);
+    for (int i = 0; i < t; i++)
     {
-        if (i % 2 == 0)
-        {
-            out += s;
-        }
-        else
-        {
-            out += sb;
-        }
+        cin >> n[i];
     }
-    if ((n / 5) & 1)
+    for (int i = 0; i < t; i++)
     {
-        for (int i = 0; i < (n % 5); i++)
-        {
-            out += sb[i];
-        }
+        cin >> k[i];
     }
-    else
+    for (int i = 0; i < t; i++)
     {
-        for (int i = 0; i < (n % 5); i++)
-        {
-            out += s[i];
-        }
+        cout << mod_exp(2, k[i], MOD) << "\n";
     }
-    cout << out << "\n";
 }
 
 int main()
 {
     FASTIO;
-    ll t;
-    t = 1;
-    cin >> t;
+    int t = 1;
     TC
     {
         solve();
     }
+    return 0;
 }
