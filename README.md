@@ -23,4 +23,4 @@ The repository may seem messy, but it's continually improving. 🌱
 
 Email ghassen.fatnassi@supcom.tn with questions or suggestions. 📧
 
-Happy coding! 💻🏆
+Enjoy and leave a star :)
