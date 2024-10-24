@@ -1,1 +1,0 @@
-{"name":"Local: curr2","url":"/media/gaston/gaston1/pro/github/cp_playground/scripts/curr2.cpp","tests":[{"id":1723850306719,"input":"4\n2 5\n1 10\n3 0\n10 15 12\n4 6\n3 1 2 4\n2 4\n6 9\n","output":"4\n13\n0\n0\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/media/gaston/gaston1/pro/github/cp_playground/scripts/curr2.cpp","group":"local","local":true}

@@ -1,1 +1,0 @@
-{"name":"Local: curr_contest","url":"/media/gaston/gaston1/pro/github/cp_playground/scripts/curr_contest.cpp","tests":[{"id":1725799128225,"input":"5\n3\n2\n1\n4\n11","output":"3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/media/gaston/gaston1/pro/github/cp_playground/scripts/curr_contest.cpp","group":"local","local":true}
