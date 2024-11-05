@@ -1,26 +1,11 @@
-# Competitive Programming Playground 🏆🚀💻
+# Competitive Programming Playground 🏆🚀
 
-Welcome to the Competitive Programming Playground! Here, you'll find code snippets, algorithms, and solutions representing my journey in competitive programming. 🚀
+A collection of my solutions to CSES problems and competitive programming contests.
 
-## Inside:
+### Contents
+- **Algorithms & Data Structures**
+- **Solutions to Problems**
 
-- **Code Snippets**: Algorithms, data structures, and techniques.
-- **Problem Solutions**: Solutions to various problems.
-
-## Messy but Evolving:
-
-The repository may seem messy, but it's continually improving. 🌱
-
-## Getting Started:
-
-1. Clone the repo.
-
-2. Explore the code and solutions.
-
-3. Contribute! Your input is valued. 🤝
-
-## Contact:
-
-Email ghassen.fatnassi@supcom.tn with questions or suggestions. 📧
-
-Enjoy and leave a star :)
+### Getting Started
+- Clone the repo and explore the solutions.
+- Feel free to suggest improvements! 🤝
