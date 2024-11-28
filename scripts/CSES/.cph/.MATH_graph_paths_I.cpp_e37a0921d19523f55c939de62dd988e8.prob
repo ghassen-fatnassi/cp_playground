@@ -1,0 +1,1 @@
+{"name":"Local: MATH_graph_paths_I","url":"/mnt/DATA/pro/github/cp_playground/scripts/CSES/MATH_graph_paths_I.cpp","tests":[{"id":1732809098739,"input":"3 4 8\n1 2\n2 3\n3 1\n3 2\n","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/mnt/DATA/pro/github/cp_playground/scripts/CSES/MATH_graph_paths_I.cpp","group":"local","local":true}

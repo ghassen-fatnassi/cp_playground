@@ -1,0 +1,15 @@
+behi bsnba lil plan mtaa l workshops
+
+1) recap and first steps in AI for beginners
+
+2) Gradient Descent => logistic regression
+
+3) Tree based algorithms + bagging/boosting
+
+potentially a 
+
+4) Neural Networks
+
+5) Convolution Neural Networks
+
+6) Surprise

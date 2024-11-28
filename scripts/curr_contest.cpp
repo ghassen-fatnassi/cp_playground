@@ -9,20 +9,28 @@ const int MOD = 1e9 + 7;
 
 void solve()
 {
-    ll n, k, l;
-    cin >> n >> k >> l;
-    ll sum = (2 * l) * (2 * l) * n - (n - 1) * (2 * l - k) * (2 * l - k);
-    cout << sum << "\n";
+    ll n, k;
+    cin >> n >> k;
+    ll p, q;
+    p = 2 * k * (n - 1) + k * (k - 1);
+    q = (n + k - 1) * (n + k - 2);
+    if (n == 1 && k == 1)
+    {
+        cout << "1 1\n";
+    }
+    else
+    {
+        ll x = gcd(p, q);
+        cout << p / x << " " << q / x;
+        cout << "\n";
+    }
 }
 
 int main()
 {
-    FASTIO
     int t;
-    t = 1;
-    TC
-    {
-        solve();
-    }
+    cin >> t;
+    TC { solve(); }
+
     return 0;
 }
