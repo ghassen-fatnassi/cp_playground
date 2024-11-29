@@ -59,7 +59,7 @@ void solve()
     {
         ll p, q;
         cin >> p >> q;
-        A[p - 1][q - 1] = 1;
+        A[p - 1][q - 1]++;
     }
 
     A = MatrixBinaryExp(A, k);
