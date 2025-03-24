@@ -40,30 +40,36 @@ void solve()
     {
         make_set(parent, i);
     }
-
+    int g1, g2;
     for (int i = 0; i < m; i++)
     {
         int a, b;
         cin >> a >> b;
-        union_sets(parent, a - 1, b - 1);
-    }
-    set<int> unique;
-    for (int i = 0; i < n; i++)
-    {
-        unique.insert(find_set(parent, i));
-    }
-    cout << unique.size() - 1 << "\n";
-    int first = -1;
-    for (auto elm : unique)
-    {
-        if (first == -1)
+        if (i == 0)
         {
-            first = elm;
+            g1 = a - 1;
+            g2 = b - 1;
         }
         else
         {
-            cout << first + 1 << " " << elm + 1 << "\n";
+            if (find_set(parent, a) == g1)
+            {
+                union_sets(parent, b, g2);
+            }
+            if (find_set(parent, a) == g2)
+            {
+                union_sets(parent, b, g1);
+            }
+            if (find_set(parent, b) == g1)
+            {
+                union_sets(parent, a, g2);
+            }
+            if (find_set(parent, b) == g2)
+            {
+                union_sets(parent, a, g1);
+            }
         }
+        // union_sets(parent, a - 1, b - 1);
     }
 }
 

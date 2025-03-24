@@ -7,19 +7,26 @@ using namespace std;
 #define TC while (t--)
 const int MOD = 1e9 + 7;
 
-int main()
+void solve()
 {
-    ll n;
+    int n;
     cin >> n;
-    ll x[n];
+    int parent[n];
+    pair<int, int> Tree[4 * n];
     for (int i = 0; i < n; i++)
     {
-        cin >> x[i];
+        int x;
+        cin >> x;
+        parent[i] = x - 1;
     }
-    ll dp[(ll)1e5+5][(ll)100];
-    for(int i=1;i<1e5+5;i++){
-        for(int j=0;j<100;j++){
-            
-        }
-    }
+}
+
+int main()
+{
+    FASTIO;
+    int t = 1;
+    // cin >> t;
+    TC { solve(); }
+
+    return 0;
 }

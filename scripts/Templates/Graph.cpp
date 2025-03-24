@@ -85,7 +85,7 @@ public:
         {
             if (!vis[node.first])
             {
-                if (1) /* condition here */
+                if (1 /* condition here */)
                 {
                     // logic here
                 }
