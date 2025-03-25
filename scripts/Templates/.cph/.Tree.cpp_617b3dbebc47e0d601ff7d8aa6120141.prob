@@ -1,0 +1,1 @@
+{"name":"Local: Tree","url":"/mnt/USEFUL/pro/GetCracked/REPOs/cp_playground/scripts/Templates/Tree.cpp","tests":[{"id":1742854656563,"input":"1 2\n1 5\n2 3\n2 4\n5 6\n5 7\n6 8\n6 9\n9 10\n9 11","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/mnt/USEFUL/pro/GetCracked/REPOs/cp_playground/scripts/Templates/Tree.cpp","group":"local","local":true}
