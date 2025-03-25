@@ -10,26 +10,19 @@ const int MOD = 998244353;
 void solve()
 {
     ll n;
-    string s;
     cin >> n;
-    cin >> s;
-    ll u = 0, d = 0;
-    for (int i = 0; i < s.size(); i++)
+    multiset<int> digits = {0, 0, 0, 1, 2, 2, 3, 5};
+    int stop = -1;
+    int curr;
+    for (int i = 0; i < n; i++)
     {
-        if (s[i] == '_')
+        cin >> curr;
+        digits.erase(curr);
+        if (digits.size() == 0)
         {
-            d++;
-        }
-        else
-        {
-            u++;
+            stop = i;
         }
     }
-    ll l, r;
-    l = u / 2;
-    r = u - (u / 2);
-    ll total = l * r * d;
-    cout << total << endl;
 }
 
 int main()

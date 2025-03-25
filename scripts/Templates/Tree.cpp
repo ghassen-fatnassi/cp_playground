@@ -2,13 +2,6 @@
 using namespace std;
 #define ll long long
 // all of the commendts are mine btw :D
-//  this class is supposed to contain the following methods
-//  int n;cin>>n; to get the number of nodes in the tree
-//  Tree T(n); to construct the tree
-//  T.add(u,v) *k(pseudocode) ; insert k edges in the form of u,v where u is the parent of v
-//  T.initialize(x) ; where x is the node to be considered the root throughout the code
-//  T.lca(u,v) ; this returns the least common ancestor between u and v
-//  T.dist(u,v) ; this returns the distance between u and v in terms of edges (throughout the shortest path)
 class Tree
 {
 public:
