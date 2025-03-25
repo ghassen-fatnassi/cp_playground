@@ -25,7 +25,7 @@ public:
         parent.resize(size, -1);
         height.resize(size, 0);
         log_size = (int)ceil(log(size));
-        dp.resize(n, vector<int>(log_size, 0)); // init to 0 since it's gonna be the root node
+        dp.resize(size, vector<int>(log_size, 0)); // init to 0 since it's gonna be the root node
     }
     void add(int u, int v)
     {
@@ -41,7 +41,7 @@ public:
     void dp_dfs(int x)
     {
         dp[x][0] = parent[x];
-        for (int j = 1; j <= log_size; j--)
+        for (int j = 1; j < log_size; j++)
         {
             dp[x][j] = dp[dp[x][j - 1]][j - 1]; // the "node up 2^j from x" is the "node up 2^(j-1) from the node up 2^(j-1) from x"
         }
@@ -63,20 +63,20 @@ public:
             swap(u, v);
         }
         // from now on we'll suppose height[u]>==height[v]
-        for (int i = log_size; i >= 0; i--)
+        for (int i = log_size - 1; i >= 0; i--)
         {
             if ((1 << i) <= height[u] - height[v])
             {
                 u = dp[u][i];
             }
         }
-        //  check case of u and v are same node after fixing height(v in the subtree of u or vice versa)
+        // case of u and v are same node after fixing height(v in the subtree of u or vice versa)
         if (u == v)
         {
-            return u;
+            return u; //"return height v;" is equally correct
         }
         //  now suppose u and v same height and keep going
-        for (int i = log_size; i >= 0; i--)
+        for (int i = log_size - 1; i >= 0; i--)
         {
             if (dp[u][i] != dp[v][i])
             {
@@ -89,6 +89,7 @@ public:
     int dist(int u, int v)
     {
         // finds the distance (length of path ,in edges) between 2 nodes in the tree
-        return 2 * height[lca(u, v)] - height[u] - height[v];
+        return -2 * height[lca(u, v)] + height[u] + height[v];
     }
 };
+// this implementation is 0 indexed , make sure to do u-- , v-- when inserting edges with add
