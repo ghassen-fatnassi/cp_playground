@@ -37,11 +37,11 @@ void solve()
 
     vector<int> distA(n), distB(n);
     distA[0] = 0;
-    dfs(0, -1, adj, distA);
+    dfs(0, -1, adj, distA); // to find first endpoint of diameter
 
     int A = max_element(distA.begin(), distA.end()) - distA.begin();
     distA[A] = 0;
-    dfs(A, -1, adj, distA);
+    dfs(A, -1, adj, distA); // to find the second endpoint of diameter
 
     int B = max_element(distA.begin(), distA.end()) - distA.begin();
     distB[B] = 0;

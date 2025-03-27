@@ -39,8 +39,7 @@ void dfs(vector<vector<int>> &graph, vector<vector<int>> &visited, int i, int j,
 int main()
 {
     int n;
-    cin >>
-        n;
+    cin >> n;
     vector<vector<int>> grid(n, vector<int>(n));
     vector<vector<int>> visited(n, vector<int>(n, 0));
 
