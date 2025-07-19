@@ -1,35 +1,62 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-#define FASTIO  \
-    cin.tie(0); \
-    ios_base::sync_with_stdio(false);
+#define FASTIO                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(0);
 #define TC while (t--)
-const int MOD = 998244353;
+const ll MOD = 998244353;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    multiset<int> digits = {0, 0, 0, 1, 2, 2, 3, 5};
-    int stop = -1;
+    int n, k;
+    cin >> n >> k;
+    deque<pair<int, int>> dq;
     int curr;
     for (int i = 0; i < n; i++)
     {
         cin >> curr;
-        digits.erase(curr);
-        if (digits.size() == 0)
+        dq.push_back({curr, 0});
+    }
+    for (int i = 0; i < k; i++)
+    {
+        auto x = dq[0];
+        auto y = dq[1];
+        if (x.first > y.first)
         {
-            stop = i;
+            dq.pop_front();
+            dq.pop_front();
+            dq.push_back(y);
+            dq.push_front({x.first, x.second + 1});
+        }
+        else
+        {
+            dq.pop_front();
+            dq.push_back(x);
+            dq[0] = {y.first, y.second + 1};
         }
     }
+    pair<int, int> maxx = {0, 0};
+    for (int i = 0; i < n; i++)
+    {
+        if (dq[i].second > maxx.second)
+        {
+            maxx.first = dq[i].first;
+            maxx.second = dq[i].second;
+        }
+    }
+    cout << maxx.first << "\n";
 }
 
 int main()
 {
     FASTIO
-    int t = 1;
-    cin >> t;
-    TC { solve(); }
+    ll t;
+    t = 1;
+    // cin >> t;
+    TC
+    {
+        solve();
+    }
     return 0;
 }

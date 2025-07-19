@@ -1,0 +1,104 @@
+You are a machine learning model specialized in multi-label node classification for telecom tower data. Your job is to predict multiple possible labels for each mobile network tower (enodeB_id), based on both the tower's own features and the influence of neighboring towers.
+
+Here are the exact specifications:
+
+Data Structure:
+
+Each row corresponds to an event at an enodeB_id (a mobile network tower).
+
+Multiple rows per enodeB_id, each with numeric and categorical features.
+
+Labels are multi-hot encoded — a tower can have multiple labels active at once.
+
+Graph Definition:
+
+Nodes: enodeB_ids (towers).
+
+Edges: Connect towers that are geographically or operationally related (e.g., nearest neighbors or within the same cluster).
+
+Build edges using coordinates (e.g., latitude, longitude) with kNN or Delaunay triangulation.
+
+Task:
+
+Multi-label node classification: For each enodeB_id, predict multiple possible labels.
+
+Output: Multi-hot vector per node (e.g., [1, 0, 1, 0, 1]).
+
+Model Requirements:
+
+Use Graph Neural Networks (GCN, GraphSAGE, or GAT) to model tower relationships.
+
+Aggregate node features from neighbors using 2-3 GNN layers.
+
+For features:
+
+Categorical → embed with trainable embeddings.
+
+Numeric → normalize (standard scaler or min-max scaling).
+
+Aggregate multiple rows per enodeB_id (mean pooling, max pooling, or attention pooling).
+
+Training Objective:
+
+Use sigmoid activation at output.
+
+Optimize with Binary Cross-Entropy with Logits Loss (BCEWithLogitsLoss).
+
+Example: if tower A has labels [1, 0, 1], the loss compares against sigmoid outputs.
+
+Evaluation Metrics:
+
+Mean Average Precision (mAP)
+
+F1-score (micro, macro)
+
+Per-label accuracy
+
+Confusion matrix per class (optional)
+
+Data Handling:
+
+Train/val/test split: 80% train, 10% validation, 10% test (by enodeB_id).
+
+Efficient handling for 10 million rows using batching (via PyTorch Geometric NeighborSampler or ClusterGCN).
+
+Graph Building & Scalability:
+
+Use PyTorch Geometric or Deep Graph Library (DGL) for graph modeling.
+
+Build graph structure ahead of time and cache it.
+
+Avoid full-graph training if memory is tight — prefer mini-batching.
+
+Submission Output:
+
+CSV file with enodeB_id and predicted multi-hot labels.
+
+Example:
+
+Copy
+Edit
+enodeB_id,label_0,label_1,label_2,label_3
+101,1,0,1,0
+102,0,1,0,1
+Optional Enhancements:
+
+Use GAT to allow dynamic weighting of neighbor influence.
+
+Positional encodings (e.g., sine/cosine based on geo-coordinates) to improve spatial modeling.
+
+Load pre-trained embeddings for categorical features if available.
+
+Training Display:
+
+Use tqdm to show clean, uncluttered progress bars.
+
+Log metrics (F1, mAP, loss) per epoch.
+
+Preferred Libraries:
+
+PyTorch Geometric (PyG)
+
+PyTorch
+
+wandb for experiment tracking

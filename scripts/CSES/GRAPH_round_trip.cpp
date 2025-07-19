@@ -13,13 +13,15 @@ public:
     int n;
     vector<vector<int>> g;
     vector<int> vis;
-    int cycle;
+    vector<int> parent;
+    int NOD = -1;
 
     Graph(int num_nodes)
     {
         n = num_nodes;
         g.resize(n, vector<int>());
         vis.resize(n, 0);
+        parent.resize(n, -1);
     }
     void insert(int u, int v)
     {
@@ -31,30 +33,27 @@ public:
         for (int i = 0; i < n; i++)
         {
             vis[i] = 0;
+            parent[i] = -1;
         }
-        cycle = 0;
     }
-    void bfs(int src)
+    void dfs(int src)
     {
-        deque<int> q;
-        q.push_back(src);
-        vis[src] = 1;
-        while (!q.empty())
+        for (auto node : g[src])
         {
-            int curr = q.front();
-            q.pop_front();
-            for (int child : g[curr])
+            if (NOD != -1)
             {
-                if (vis[child] == 0)
-                {
-                    q.push_back(child);
-                    vis[child] = 3 ^ vis[curr];
-                }
-                else if ((3 ^ vis[curr]) != vis[child])
-                {
-                    cycle = 1;
-                    return;
-                }
+                return;
+            }
+            else if (vis[node] && node != parent[src])
+            {
+                parent[node] = src;
+                NOD = node;
+            }
+            else if (!vis[node])
+            {
+                parent[node] = src;
+                vis[node] = 1;
+                dfs(node);
             }
         }
     }
@@ -78,22 +77,33 @@ void solve()
     {
         if (city.vis[i] == 0)
         {
-            city.bfs(i);
-        }
-        if (city.cycle == 1)
-        {
-            break;
+            city.vis[i] = 1;
+            city.dfs(i);
+            if (city.NOD != -1)
+            {
+                break;
+            }
         }
     }
-    if (city.cycle == 1)
+    if (city.NOD == -1)
     {
         cout << "IMPOSSIBLE";
     }
     else
     {
-        for (int i = 0; i < n; ++i)
+        vector<int> path;
+        path.push_back(city.NOD);
+        int curr = city.parent[city.NOD];
+        while (curr != city.NOD)
         {
-            cout << city.vis[i] << " ";
+            path.push_back(curr);
+            curr = city.parent[curr];
+        }
+        ll l = path.size();
+        cout << l + 1 << "\n";
+        for (ll i = 0; i <= l; ++i)
+        {
+            cout << path[i % l] + 1 << " ";
         }
     }
 }
